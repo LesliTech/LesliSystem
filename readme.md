@@ -1,6 +1,6 @@
 
 <div align="center">
-    <img width="100" alt="LesliSystem logo" src="../docs/images/system-logo.svg" />
+    <img width="100" alt="LesliSystem logo" src="./docs/images/system-logo.svg" />
     <h3 align="center" class="has-text-centered">Core System Utilities for The Lesli Framework.</h3>
     <p align="center" class="has-text-centered">
         LesliSystem provides shared, reusable system-level components for The Lesli Framework.
