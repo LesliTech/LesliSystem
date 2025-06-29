@@ -27,11 +27,50 @@
 <hr/>
 <br />
 
-### Quick start
+### Installation
 
 ```shell
-# Add LesliAdmin engine gem
 bundle add lesli_system
+```
+
+### Usage
+```ruby
+
+# Get information of all lesli engines installed
+LesliSystem.engines()
+
+# Result:
+[
+    {
+        :code=>"lesli", 
+        :name=>"Lesli", 
+        :path=>"/lesli", 
+        :version=>"5.0.13", 
+        :description=>"Ruby on Rails SaaS Development Framework.", 
+        :build=>"1735524814", 
+        :dir=>"/gem/installation/path"
+    }
+]
+
+# Get information of specific engine
+LesliSystem.engine("Lesli")
+
+# Result:
+{
+    :code=>"lesli", 
+    :name=>"Lesli", 
+    :path=>"/lesli", 
+    :version=>"5.0.13", 
+    :description=>"Ruby on Rails SaaS Development Framework.", 
+    :build=>"1735524814", 
+    :dir=>"/gem/installation/path"
+}
+
+# Get specific property of information of specific engine
+LesliSystem.engine("Lesli", "path")
+
+# Result:
+"/lesli"
 ```
 
 ### Documentation
