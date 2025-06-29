@@ -1,13 +1,18 @@
 
 <div align="center">
-    <img width="100" alt="LesliSystem logo" src="./docs/images/system-logo.svg" />
-    <h3 align="center">Static system metadata helper.</h3>
+    <img width="100" alt="LesliSystem logo" src="../docs/images/system-logo.svg" />
+    <h3 align="center" class="has-text-centered">Core System Utilities for The Lesli Framework.</h3>
+    <p align="center" class="has-text-centered">
+        LesliSystem provides shared, reusable system-level components for The Lesli Framework.
+        It includes tools for engine metadata, configuration introspection, messaging helpers,
+        and any other static or dynamic utilities needed across the Lesli ecosystem.
+    </p>
 </div>
 
 <br />
 <hr/>
 
-<p align="center" class="is-flex is-justify-content-center">
+<div align="center" class="documentation-statics">
     <a target="blank" href="https://rubygems.org/gems/lesli">
         <img height="22" alt="Gem Version" src="https://badge.fury.io/rb/lesli.svg"/>
     </a>
@@ -17,7 +22,7 @@
     <a href="https://codecov.io/github/LesliTech/LesliBabel"> 
         <img height="22" src="https://sonarcloud.io/api/project_badges/measure?project=LesliTech_LesliBabel&metric=sqale_rating"/> 
     </a>
-</p>
+</div>
 
 <hr/>
 <br />
