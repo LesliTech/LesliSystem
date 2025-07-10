@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # loading gem coomponents
-require "lesli_system/engines"
 require "lesli_system/version"
-#require "lesli_system/engine"
+require "lesli_system/engines"
+require "lesli_system/klass"
 
 module LesliSystem
     class Error < StandardError; end

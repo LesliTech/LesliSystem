@@ -73,6 +73,18 @@ LesliSystem.engine("Lesli", "path")
 "/lesli"
 ```
 
+```ruby 
+module LesliBell
+    class DashboardsController < ApplicationController
+        def index
+            # Build a standard object based on a controller reference
+            builder = LesliSystem::Klass.new(self)
+            @dashboards = builder.model.dashboard.all
+        end
+    end
+end
+```
+
 ### Documentation
 * [website](https://www.lesli.dev/)
 * [database](./docs/database.md)

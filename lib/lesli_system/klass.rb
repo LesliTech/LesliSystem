@@ -1,4 +1,4 @@
-=begin 
+=begin
 
 Lesli
 
@@ -31,11 +31,17 @@ Building a better future, one line of code at a time.
 =end
 
 module LesliSystem
-    # class Engine < ::Rails::Engine
-    #     isolate_namespace LesliSystem
+    class Klass
+        ModelStruct = Struct.new(:account, :dashboard)
 
-    #     initializer "lesli_system" do |app|
+        attr_reader :engine_name, :model
 
-    #     end
-    # end
+        def initialize(klass = nil)
+            @engine_name = klass.class.name.split("::").first
+            @model = ModelStruct.new(
+                "#{@engine_name}::Account".constantize,
+                "#{@engine_name}::Dashboard".constantize
+            )
+        end
+    end
 end
