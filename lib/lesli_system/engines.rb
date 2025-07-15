@@ -47,6 +47,8 @@ module LesliSystem
                     # do not include engines if not is locally installed
                     next unless File.exist?(engine_local_path)
                 end
+
+                gem_specification = Gem::Specification.find_by_name(engine.underscore)
                 
                 # engine completelly information
                 ENGINES[engine] = {
@@ -54,9 +56,10 @@ module LesliSystem
                     :name => engine, 
                     :path => engine_instance::Engine.routes.find_script_name({}),
                     :version => engine_instance::VERSION,
-                    :description => Gem::Specification.find_by_name(engine.underscore).description,
+                    :description => gem_specification.description,
+                    :metadata => gem_specification.metadata,
                     :build => engine_instance::BUILD,
-                    :dir => Gem::Specification.find_by_name(engine.underscore).gem_dir
+                    :dir => gem_specification.gem_dir
                 }
             end 
 
