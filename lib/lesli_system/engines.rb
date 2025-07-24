@@ -7,7 +7,7 @@ module LesliSystem
         # engine("LesliAdmin", "name")
         def self.engine(engine, property=nil)
 
-            engine = engine.camelize
+            engine = engine.to_s.camelize
 
             engines() if ENGINES.empty?
 
@@ -56,6 +56,7 @@ module LesliSystem
                     :name => engine, 
                     :path => engine_instance::Engine.routes.find_script_name({}),
                     :version => engine_instance::VERSION,
+                    :summary => gem_specification.summary,
                     :description => gem_specification.description,
                     :metadata => gem_specification.metadata,
                     :build => engine_instance::BUILD,
@@ -69,6 +70,9 @@ module LesliSystem
                 :name => "Root", 
                 :path => "/",
                 :version => "1.0.0",
+                :summary => "",
+                :description => "",
+                :metadata => [],
                 :build => "0000000",
                 :dir => Rails.root.to_s
             }

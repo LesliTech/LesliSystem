@@ -17,6 +17,16 @@ RSpec.describe LesliSystem::Engines, type: :model do
     end
 
     context "when working with engine" do
+        it "can access with symbol" do
+            engine = LesliSystem::Engines.engine(:root)
+
+            expect(engine[:code]).to eq("root")
+            expect(engine[:name]).to eq("Root")
+            expect(engine[:path]).to eq("/")
+            expect(engine[:version]).to eq("1.0.0")
+            expect(engine[:build]).to eq("0000000")
+            expect(engine[:dir]).to eq("")
+        end
         it "has Root metadata" do
             engine = LesliSystem::Engines.engine("Root")
 
