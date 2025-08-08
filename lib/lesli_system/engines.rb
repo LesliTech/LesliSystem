@@ -88,6 +88,7 @@ module LesliSystem
             LesliAdmin
             LesliBabel
             LesliAudit
+            LesliMailer
             LesliShield
             LesliLetter
             LesliPapers
