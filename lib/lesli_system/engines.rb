@@ -2,6 +2,7 @@
 module LesliSystem
     class Engines
         ENGINES = {}
+        GEMS = {}
 
         # engine("LesliAdmin")
         # engine("LesliAdmin", "name")
@@ -21,50 +22,11 @@ module LesliSystem
             return ENGINES[engine]
         end
 
-        # Lesli::System.engines()
-        # Lesli::System.engines(:local => true)
-        def self.engines local: false
-
+        def self.engines local:true
             return ENGINES unless ENGINES.empty?
 
-            # due we do not know the engine mounted path we have to look up for it every
-            # time we load the html view so we can use the dynamic route from the main rails app
-            # we use this in the url plugin 
-            LESLI_ENGINES.each do |engine|
+            engines_and_gems(:engine, LESLI_ENGINES, local:local)
 
-                # skip if engine is not installed
-                next unless Object.const_defined?(engine)
-
-                # convert engine name to Ruby object
-                engine_instance = "#{engine}".constantize
-
-                # check if engines installed locally are required
-                if local 
-
-                    # build the path were engines should be installed
-                    engine_local_path = Rails.root.join("engines", engine)
-
-                    # do not include engines if not is locally installed
-                    next unless File.exist?(engine_local_path)
-                end
-
-                gem_specification = Gem::Specification.find_by_name(engine.underscore)
-                
-                # engine completelly information
-                ENGINES[engine] = {
-                    :code => engine.underscore, 
-                    :name => engine, 
-                    :path => engine_instance::Engine.routes.find_script_name({}),
-                    :version => engine_instance::VERSION,
-                    :summary => gem_specification.summary,
-                    :description => gem_specification.description,
-                    :metadata => gem_specification.metadata,
-                    :build => engine_instance::BUILD,
-                    :dir => gem_specification.gem_dir
-                }
-            end 
-
-            # also include the rails main_app
             ENGINES["Root"] = {
                 :code => "root", 
                 :name => "Root", 
@@ -80,7 +42,68 @@ module LesliSystem
             ENGINES
         end
 
+        def self.gems 
+            return GEMS unless GEMS.empty?
+            engines_and_gems(:gem, LESLI_GEMS)
+            GEMS
+        end
+
         private
+
+        # Lesli::System.engines()
+        # Lesli::System.engines(:local => true)
+        def self.engines_and_gems engine_or_gem, lesli_gems, local: false
+
+            # due we do not know the engine mounted path we have to look up for it every
+            # time we load the html view so we can use the dynamic route from the main rails app
+            # we use this in the url plugin 
+            lesli_gems.each do |lesli_gem|
+
+                # skip if engine is not installed
+                next unless Object.const_defined?(lesli_gem)
+
+                # convert engine name to Ruby object
+                gem_instance = "#{lesli_gem}".constantize
+
+                # check if engines installed locally are required
+                if local 
+
+                    # build the path were engines should be installed
+                    gem_local_path = Rails.root.join("engines", lesli_gem)
+
+                    # do not include engines if not is locally installed
+                    next unless File.exist?(gem_local_path)
+                end
+
+                gem_specification = Gem::Specification.find_by_name(lesli_gem.underscore)
+                
+                path = (engine_or_gem == :engine) ? gem_instance::Engine.routes.find_script_name({}) : nil
+
+                # Define the shared data structure
+                gem_data = {
+                    code: lesli_gem.underscore,
+                    name: lesli_gem,
+                    path: path,
+                    version: gem_instance::VERSION,
+                    summary: gem_specification.summary,
+                    description: gem_specification.description,
+                    metadata: gem_specification.metadata,
+                    build: gem_instance::BUILD,
+                    dir: gem_specification.gem_dir
+                }
+
+                # Assign to the correct constant
+                target_collection = (engine_or_gem == :engine) ? ENGINES : GEMS
+                target_collection[lesli_gem] = gem_data
+            end 
+        end
+
+        LESLI_GEMS = %w[
+            LesliDate
+            LesliView
+            LesliAssets
+            LesliSystem
+        ]
 
         LESLI_ENGINES = %w[
             Lesli

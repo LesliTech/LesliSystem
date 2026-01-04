@@ -15,4 +15,8 @@ module LesliSystem
     def self.engines(**kwargs)
         Engines.engines(**kwargs)
     end
+
+    def self.gems
+        Engines.gems
+    end
 end
