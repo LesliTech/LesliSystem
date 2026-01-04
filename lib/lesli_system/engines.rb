@@ -22,10 +22,10 @@ module LesliSystem
             return ENGINES[engine]
         end
 
-        def self.engines local:true
+        def self.engines
             return ENGINES unless ENGINES.empty?
 
-            engines_and_gems(:engine, LESLI_ENGINES, local:local)
+            engines_and_gems(:engine, LESLI_ENGINES)
 
             ENGINES["Root"] = {
                 :code => "root", 
@@ -52,7 +52,7 @@ module LesliSystem
 
         # Lesli::System.engines()
         # Lesli::System.engines(:local => true)
-        def self.engines_and_gems engine_or_gem, lesli_gems, local: false
+        def self.engines_and_gems engine_or_gem, lesli_gems
 
             # due we do not know the engine mounted path we have to look up for it every
             # time we load the html view so we can use the dynamic route from the main rails app
@@ -64,16 +64,6 @@ module LesliSystem
 
                 # convert engine name to Ruby object
                 gem_instance = "#{lesli_gem}".constantize
-
-                # check if engines installed locally are required
-                if local 
-
-                    # build the path were engines should be installed
-                    gem_local_path = Rails.root.join("engines", lesli_gem)
-
-                    # do not include engines if not is locally installed
-                    next unless File.exist?(gem_local_path)
-                end
 
                 gem_specification = Gem::Specification.find_by_name(lesli_gem.underscore)
                 
