@@ -36,11 +36,12 @@ module LesliSystem
 
         attr_reader :engine_name, :model
 
-        def initialize(klass = nil)
-            @engine_name = klass.class.name.split("::").first
+        def initialize(klass = nil, engine:nil)
+            @engine_name = klass.class.name.split("::").first unless klass.nil?
+            @engine_name = engine unless engine.nil?
             @model = ModelStruct.new(
-                "#{@engine_name}::Account".constantize,
-                "#{@engine_name}::Dashboard".constantize
+                "#{@engine_name}::Account".safe_constantize,
+                "#{@engine_name}::Dashboard".safe_constantize
             )
         end
     end
