@@ -108,6 +108,7 @@ module LesliSystem
             LesliSupport
             LesliSecurity
             LesliCalendar
+            LesliContacts
             LesliDashboard
         ]
     end
