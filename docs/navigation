@@ -1,0 +1,2 @@
+<%= navigation_for_folder("gems", "system", "about", order:["installation"]) %>
+<%= navigation_for_folder("gems", "system", "api", order:["overview", "engines", "gems", "models"]) %>

@@ -66,7 +66,7 @@ module LesliSystem
                 gem_instance = "#{lesli_gem}".constantize
 
                 gem_specification = Gem::Specification.find_by_name(lesli_gem.underscore)
-                
+
                 path = (engine_or_gem == :engine) ? gem_instance::Engine.routes.find_script_name({}) : nil
 
                 # Define the shared data structure
