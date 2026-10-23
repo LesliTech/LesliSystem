@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require "lesli_testing"
+
+LesliTesting.gem("LesliSystem", {
+  coverage_min_coverage: 60
+})
+
 require "lesli_system"
 
 RSpec.configure do |config|

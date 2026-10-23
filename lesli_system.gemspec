@@ -43,6 +43,7 @@ Gem::Specification.new do |spec|
     spec.email       = ["hello@lesli.tech"]
     spec.homepage    = "https://www.lesli.dev/"
     spec.summary     = "Core System Utilities for The Lesli Framework."
+    spec.required_ruby_version = ">= 3.3", "< 4.0"
     spec.description = <<~DESC
         LesliSystem provides shared, reusable system-level components for The Lesli Framework.
         It includes tools for engine metadata, configuration introspection, messaging helpers,
