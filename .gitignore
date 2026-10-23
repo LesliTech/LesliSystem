@@ -36,6 +36,7 @@
 .DS_Store
 .ruby-version
 brakeman.html
+/coverage/
 
 # Rails development files
 /doc/

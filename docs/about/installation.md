@@ -4,7 +4,11 @@ LesliSystem provides the package registry and namespace-resolution utilities use
 
 ## Requirements
 
-The current repository test workflow uses Ruby 3.2.5, and its development bundle resolves Rails 8.0.2. The gemspec does not declare a Ruby version or runtime dependency constraint; applications should normally use the LesliSystem version selected by their installed Lesli release.
+The current release baseline is Ruby 3.3.5 and Rails 8.1. The gem accepts Ruby
+3.3 or newer, but it intentionally does not require the complete Rails gem:
+LesliSystem is loaded by Lesli inside an already-running Rails application.
+Applications should normally use the LesliSystem version selected by their
+installed Lesli release.
 
 LesliSystem relies on:
 

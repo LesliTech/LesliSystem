@@ -8,8 +8,8 @@
 <br />
 
 <div align="center">
-    <a target="_blank" href="https://github.com/LesliTech/LesliSystem/actions/workflows/main.yml">
-        <img alt="LesliSystem test status" src="https://img.shields.io/github/actions/workflow/status/LesliTech/LesliSystem/main.yml?branch=main&style=for-the-badge&logo=github&label=tests">
+    <a target="_blank" href="https://github.com/LesliTech/LesliSystem/actions/workflows/lesli-ci-gem.yaml">
+        <img alt="LesliSystem test status" src="https://img.shields.io/github/actions/workflow/status/LesliTech/LesliSystem/lesli-ci-gem.yaml?branch=main&style=for-the-badge&logo=github&label=tests">
     </a>
     <a target="_blank" href="https://rubygems.org/gems/lesli_system">
         <img alt="Gem Version" src="https://img.shields.io/gem/v/lesli_system?style=for-the-badge&logo=ruby">
